@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4r5jfa2it0lp"]
+
+[ext_resource type="Script" uid="uid://cg53txaeyc06i" path="res://Battle/battle.gd" id="1_ac2hh"]
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ac2hh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 191.355)
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 424.0
+offset_right = 595.0
+offset_bottom = 720.0
+
+[node name="ActButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Započni razgovor"
+
+[node name="RespondButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Odgovori"
+
+[node name="SilentButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Ćuti"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 424.0
+offset_right = 1040.0
+offset_bottom = 630.0
+theme_override_font_sizes/font_size = 20
+text = "Sreo si čudovište..."
+autowrap_mode = 3
+
+[connection signal="pressed" from="Buttons/ActButton" to="." method="_on_act_button_pressed"]
+[connection signal="pressed" from="Buttons/RespondButton" to="." method="_on_respond_button_pressed"]
+[connection signal="pressed" from="Buttons/SilentButton" to="." method="_on_silent_button_pressed"]

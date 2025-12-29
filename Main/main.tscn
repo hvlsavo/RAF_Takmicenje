@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://8q2va33ba846"]
+
+[ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
+[ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
+[ext_resource type="PackedScene" uid="uid://cr2twmc0uvpup" path="res://Characters/Player/player.tscn" id="2_qvhan"]
+[ext_resource type="PackedScene" uid="uid://b8ks3ebgvhqj7" path="res://Characters/NPCS/ucenik1/ucenik_1.tscn" id="3_qvhan"]
+[ext_resource type="PackedScene" uid="uid://b4r5jfa2it0lp" path="res://Battle/battle.tscn" id="4_eunhr"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_k3v36")
+
+[node name="School" parent="." instance=ExtResource("1_2w1kt")]
+
+[node name="Ucenik1" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
+position = Vector2(958, 231)
+
+[node name="Ucenik2" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
+position = Vector2(602, 309)
+
+[node name="Player" parent="." instance=ExtResource("2_qvhan")]
+position = Vector2(45, 212)
+
+[node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
+visible = false
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
+
+[connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
+[connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]
+[connection signal="player_won" from="Player/Battle" to="." method="_on_battle_player_won"]

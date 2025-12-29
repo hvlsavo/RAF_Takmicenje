@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://didft68u16tdc"]
+
+[ext_resource type="Texture2D" uid="uid://drvrbb2fuc05s" path="res://icon.svg" id="1_2l1nk"]
+
+[node name="School" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(88, 27)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon/Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon/Icon/Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon/Icon/Icon/Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon/Icon/Icon/Icon/Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
+
+[node name="Icon" type="Sprite2D" parent="Icon/Icon/Icon/Icon/Icon/Icon"]
+position = Vector2(164, -2)
+texture = ExtResource("1_2l1nk")
