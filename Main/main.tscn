@@ -10,23 +10,40 @@
 script = ExtResource("1_k3v36")
 
 [node name="School" parent="." instance=ExtResource("1_2w1kt")]
+scale = Vector2(6.025, 6.025)
 
 [node name="Ucenik1" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
-position = Vector2(958, 231)
+position = Vector2(713, 48)
+rotation = -1.55334
 
 [node name="Ucenik2" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
-position = Vector2(602, 309)
+position = Vector2(809, 384)
 
-[node name="Player" parent="." instance=ExtResource("2_qvhan")]
-position = Vector2(45, 212)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
-[node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -905.0
+offset_top = -471.0
+offset_right = -865.0
+offset_bottom = -431.0
+scale = Vector2(1000, 1000)
+color = Color(0, 0, 0, 0.517647)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Player" parent="CanvasLayer2" instance=ExtResource("2_qvhan")]
+position = Vector2(4, 26)
+
+[node name="Battle" parent="CanvasLayer2/Player" instance=ExtResource("4_eunhr")]
 visible = false
-offset_left = -576.0
-offset_top = -324.0
-offset_right = -576.0
-offset_bottom = -324.0
+z_as_relative = false
+offset_left = -577.0
+offset_top = -348.0
+offset_right = -577.0
+offset_bottom = -348.0
 
-[connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
-[connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]
-[connection signal="player_won" from="Player/Battle" to="." method="_on_battle_player_won"]
+[connection signal="half_monster_hp_left" from="CanvasLayer2/Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
+[connection signal="player_lost" from="CanvasLayer2/Player/Battle" to="." method="_on_battle_player_lost"]
+[connection signal="player_won" from="CanvasLayer2/Player/Battle" to="." method="_on_battle_player_won"]

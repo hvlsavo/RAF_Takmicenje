@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var battle_scene = $Player/Battle
-@onready var player = $Player
+@onready var battle_scene = $CanvasLayer2/Player/Battle
+@onready var player = $CanvasLayer2/Player
 
 var social_credit = 0
 
