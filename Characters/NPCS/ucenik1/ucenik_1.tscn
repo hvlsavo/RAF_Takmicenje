@@ -1,13 +1,94 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8ks3ebgvhqj7"]
+[gd_scene load_steps=16 format=3 uid="uid://b8ks3ebgvhqj7"]
 
 [ext_resource type="Texture2D" uid="uid://drvrbb2fuc05s" path="res://icon.svg" id="1_3atmt"]
 [ext_resource type="Script" uid="uid://c358x1gekpax4" path="res://Characters/NPCS/ucenik1/ucenik_1.gd" id="1_lyu72"]
+[ext_resource type="Texture2D" uid="uid://w7sn5gke0u4y" path="res://Assets/Spritesheets/npc_monster.png" id="3_r7rxq"]
+[ext_resource type="Texture2D" uid="uid://bn4wwm62m16tk" path="res://Assets/Spritesheets/npc_monster_phase2.png" id="4_lfa1n"]
+[ext_resource type="AudioStream" uid="uid://lc8itieeqjat" path="res://Assets/Sound/whoosh.mp3" id="5_u1ohb"]
+[ext_resource type="Texture2D" uid="uid://ci53syjpqwxqn" path="res://Assets/Spritesheets/warning.png" id="6_j8euh"]
+[ext_resource type="AudioStream" uid="uid://16r7lp5m0iow" path="res://Assets/Sound/alert.mp3" id="7_8p72n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3atmt"]
-size = Vector2(75, 101)
+size = Vector2(133, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyu72"]
 size = Vector2(52, 48)
+
+[sub_resource type="Animation" id="Animation_lfa1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r7rxq"]
+resource_name = "idle"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333, 0.666667, 0.9, 1.16667, 1.46667, 1.73333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfa1n"]
+_data = {
+&"RESET": SubResource("Animation_lfa1n"),
+&"idle": SubResource("Animation_r7rxq")
+}
+
+[sub_resource type="Animation" id="Animation_u1ohb"]
+resource_name = "idle"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.666667, 0.933333, 1.2, 1.46667, 1.73333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_j8euh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8p72n"]
+_data = {
+&"RESET": SubResource("Animation_j8euh"),
+&"idle": SubResource("Animation_u1ohb")
+}
 
 [node name="Ucenik1" type="StaticBody2D"]
 script = ExtResource("1_lyu72")
@@ -16,11 +97,15 @@ phase_2 = ExtResource("1_3atmt")
 phase_3 = ExtResource("1_3atmt")
 
 [node name="Phase1" type="Sprite2D" parent="."]
-scale = Vector2(0.82, 0.82)
+scale = Vector2(2, 2)
+texture = ExtResource("3_r7rxq")
+hframes = 4
 
 [node name="Phase2" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.40625, 0.375)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lfa1n")
+hframes = 4
 
 [node name="Phase3" type="Sprite2D" parent="."]
 visible = false
@@ -30,11 +115,35 @@ scale = Vector2(0.186, 0.172)
 position = Vector2(-1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-89.5, 0.5)
+position = Vector2(1, 3.5)
+rotation = -1.5708
 shape = SubResource("RectangleShape2D_3atmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.45, 0.45)
 shape = SubResource("RectangleShape2D_lyu72")
+
+[node name="Phase1Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lfa1n")
+}
+
+[node name="Phase2Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8p72n")
+}
+
+[node name="Transition" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u1ohb")
+volume_db = -19.809
+
+[node name="AlertedAnim" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("6_j8euh")
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="AlertedAnim"]
+stream = ExtResource("7_8p72n")
+volume_db = -10.895
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

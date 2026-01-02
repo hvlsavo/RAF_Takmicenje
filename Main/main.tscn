@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=9 format=3 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
 [ext_resource type="PackedScene" uid="uid://cr2twmc0uvpup" path="res://Characters/Player/player.tscn" id="2_qvhan"]
 [ext_resource type="PackedScene" uid="uid://b8ks3ebgvhqj7" path="res://Characters/NPCS/ucenik1/ucenik_1.tscn" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://b4r5jfa2it0lp" path="res://Battle/battle.tscn" id="4_eunhr"]
+[ext_resource type="Texture2D" uid="uid://w7sn5gke0u4y" path="res://Assets/Spritesheets/npc_monster.png" id="4_liyct"]
+[ext_resource type="Texture2D" uid="uid://bn4wwm62m16tk" path="res://Assets/Spritesheets/npc_monster_phase2.png" id="5_ib3t1"]
+[ext_resource type="Texture2D" uid="uid://bkpnt8lhgb2lq" path="res://Assets/textures/shadow.tres" id="6_f6fdm"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k3v36")
@@ -13,20 +16,39 @@ script = ExtResource("1_k3v36")
 scale = Vector2(6.025, 6.025)
 
 [node name="Ucenik1" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
-position = Vector2(713, 48)
-rotation = -1.55334
+position = Vector2(612, -7.99999)
+scale = Vector2(2.01, 2.01)
+phase_1 = ExtResource("4_liyct")
+phase_2 = ExtResource("5_ib3t1")
+
+[node name="TextureRect" type="TextureRect" parent="Ucenik1"]
+offset_left = -32.8358
+offset_top = 0.995025
+offset_right = 31.1642
+offset_bottom = 64.995
+texture = ExtResource("6_f6fdm")
 
 [node name="Ucenik2" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
-position = Vector2(809, 384)
+position = Vector2(1001, 282)
+scale = Vector2(2, 2)
+phase_1 = ExtResource("4_liyct")
+phase_2 = ExtResource("5_ib3t1")
+
+[node name="TextureRect" type="TextureRect" parent="Ucenik2"]
+offset_left = -32.8358
+offset_top = 0.995025
+offset_right = 31.1642
+offset_bottom = 64.995
+texture = ExtResource("6_f6fdm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -905.0
-offset_top = -471.0
-offset_right = -865.0
-offset_bottom = -431.0
+offset_left = -968.0
+offset_top = -452.0
+offset_right = -928.0
+offset_bottom = -412.0
 scale = Vector2(1000, 1000)
 color = Color(0, 0, 0, 0.517647)
 
