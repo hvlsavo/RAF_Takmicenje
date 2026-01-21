@@ -16,6 +16,7 @@ signal start_battle(ucenik)
 @onready var phase1_anim = $Phase1Anim
 @onready var phase2_anim = $Phase2Anim
 
+@onready var shadow = $TextureRect
 
 @onready var transition = $Transition
 var transition_sound_ended : bool = false
@@ -48,6 +49,7 @@ func _on_battle_player_won():
 	sprite_phase2.hide()
 	sprite_phase3.show()
 	area2d.set_deferred("monitoring", false)
+	shadow.hide()
 
 func _on_battle_player_lost():
 	sprite_phase1.show()

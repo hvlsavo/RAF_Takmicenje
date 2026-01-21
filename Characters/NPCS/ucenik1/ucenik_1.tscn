@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8ks3ebgvhqj7"]
+[gd_scene load_steps=17 format=3 uid="uid://b8ks3ebgvhqj7"]
 
 [ext_resource type="Texture2D" uid="uid://drvrbb2fuc05s" path="res://icon.svg" id="1_3atmt"]
 [ext_resource type="Script" uid="uid://c358x1gekpax4" path="res://Characters/NPCS/ucenik1/ucenik_1.gd" id="1_lyu72"]
@@ -7,12 +7,13 @@
 [ext_resource type="AudioStream" uid="uid://lc8itieeqjat" path="res://Assets/Sound/whoosh.mp3" id="5_u1ohb"]
 [ext_resource type="Texture2D" uid="uid://ci53syjpqwxqn" path="res://Assets/Spritesheets/warning.png" id="6_j8euh"]
 [ext_resource type="AudioStream" uid="uid://16r7lp5m0iow" path="res://Assets/Sound/alert.mp3" id="7_8p72n"]
+[ext_resource type="Texture2D" uid="uid://bkpnt8lhgb2lq" path="res://Assets/textures/shadow.tres" id="8_so18h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3atmt"]
 size = Vector2(133, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyu72"]
-size = Vector2(52, 48)
+size = Vector2(66.6667, 64.4444)
 
 [sub_resource type="Animation" id="Animation_lfa1n"]
 length = 0.001
@@ -52,6 +53,21 @@ _data = {
 &"idle": SubResource("Animation_r7rxq")
 }
 
+[sub_resource type="Animation" id="Animation_j8euh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_u1ohb"]
 resource_name = "idle"
 length = 3.2
@@ -67,21 +83,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 2, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_j8euh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Phase2:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8p72n"]
@@ -109,7 +110,8 @@ hframes = 4
 
 [node name="Phase3" type="Sprite2D" parent="."]
 visible = false
-scale = Vector2(0.186, 0.172)
+position = Vector2(0, 10)
+scale = Vector2(1.7, 1.7)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, 0)
@@ -120,6 +122,7 @@ rotation = -1.5708
 shape = SubResource("RectangleShape2D_3atmt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
 scale = Vector2(0.45, 0.45)
 shape = SubResource("RectangleShape2D_lyu72")
 
@@ -145,5 +148,12 @@ texture = ExtResource("6_j8euh")
 [node name="Alert" type="AudioStreamPlayer2D" parent="AlertedAnim"]
 stream = ExtResource("7_8p72n")
 volume_db = -10.895
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -31.8358
+offset_top = 25.995
+offset_right = 32.1642
+offset_bottom = 89.995
+texture = ExtResource("8_so18h")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=11 format=3 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b4r5jfa2it0lp" path="res://Battle/battle.tscn" id="4_eunhr"]
 [ext_resource type="Texture2D" uid="uid://w7sn5gke0u4y" path="res://Assets/Spritesheets/npc_monster.png" id="4_liyct"]
 [ext_resource type="Texture2D" uid="uid://bn4wwm62m16tk" path="res://Assets/Spritesheets/npc_monster_phase2.png" id="5_ib3t1"]
-[ext_resource type="Texture2D" uid="uid://bkpnt8lhgb2lq" path="res://Assets/textures/shadow.tres" id="6_f6fdm"]
+[ext_resource type="Texture2D" uid="uid://6v744jyhqs63" path="res://Assets/Spritesheets/npc_sprite_1.png" id="6_rj11h"]
+[ext_resource type="Texture2D" uid="uid://dxgnlxlmqfilp" path="res://Assets/Spritesheets/npc_sprite_3.png" id="7_qac2q"]
+[ext_resource type="Texture2D" uid="uid://c7jwc50xp3iwi" path="res://Assets/Spritesheets/npc_sprite_2.png" id="8_qac2q"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k3v36")
@@ -20,35 +22,30 @@ position = Vector2(612, -7.99999)
 scale = Vector2(2.01, 2.01)
 phase_1 = ExtResource("4_liyct")
 phase_2 = ExtResource("5_ib3t1")
+phase_3 = ExtResource("6_rj11h")
 
-[node name="TextureRect" type="TextureRect" parent="Ucenik1"]
-offset_left = -32.8358
-offset_top = 0.995025
-offset_right = 31.1642
-offset_bottom = 64.995
-texture = ExtResource("6_f6fdm")
+[node name="Ucenik3" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
+position = Vector2(1575.83, -567.035)
+scale = Vector2(2, 2)
+phase_1 = ExtResource("4_liyct")
+phase_2 = ExtResource("5_ib3t1")
+phase_3 = ExtResource("7_qac2q")
 
 [node name="Ucenik2" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
 position = Vector2(1001, 282)
 scale = Vector2(2, 2)
 phase_1 = ExtResource("4_liyct")
 phase_2 = ExtResource("5_ib3t1")
-
-[node name="TextureRect" type="TextureRect" parent="Ucenik2"]
-offset_left = -32.8358
-offset_top = 0.995025
-offset_right = 31.1642
-offset_bottom = 64.995
-texture = ExtResource("6_f6fdm")
+phase_3 = ExtResource("8_qac2q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -968.0
-offset_top = -452.0
-offset_right = -928.0
-offset_bottom = -412.0
+offset_left = -1023.0
+offset_top = -44474.0
+offset_right = -983.0
+offset_bottom = -44390.0
 scale = Vector2(1000, 1000)
 color = Color(0, 0, 0, 0.517647)
 
