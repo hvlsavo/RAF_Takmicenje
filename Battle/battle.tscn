@@ -15,7 +15,6 @@ script = ExtResource("1_ac2hh")
 position = Vector2(576, 191.355)
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-layout_mode = 0
 offset_left = 56.0
 offset_top = 424.0
 offset_right = 595.0
@@ -37,7 +36,6 @@ theme_override_font_sizes/font_size = 42
 text = "Ćuti"
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 624.0
 offset_top = 424.0
 offset_right = 1040.0
