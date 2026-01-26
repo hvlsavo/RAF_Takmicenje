@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		velocity = input_vector * speed
 		move_and_slide()
 
-		# Play the correct walk animation
+	
 		if abs(input_vector.x) > abs(input_vector.y) and speed != 0:
 			if input_vector.x > 0:
 				anim_player.play("walk_right")
@@ -31,5 +31,4 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		move_and_slide()
 
-		# Stop animation and reset to first frame
 		anim_player.stop()

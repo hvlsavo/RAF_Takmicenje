@@ -12,7 +12,7 @@ extends Node2D
 var social_credit = 0
 
 
-#Moving npcs
+#pomerajuci npcevi
 @onready var ucenik_3 = $Ucenik3
 @export var ucenik_3_move_limit = 40
 var direction = 1
@@ -28,7 +28,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if ucenik_moving:
-		# move ucenik 3 left right
+		# pomera ucenika levo-desno
 		ucenik_3.position.x += direction * 40 * delta
 		if ucenik_3.position.x > ucenik_3_start_x + ucenik_3_move_limit:
 			direction = -1
@@ -55,5 +55,5 @@ func _on_door_body_entered(body: Node2D) -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(door_tile, "modulate:a", 0.0, 0.4)
 		door_collision.disabled = true
-		door.monitoring = false
+		set_deferred("monitoring", false)
 		

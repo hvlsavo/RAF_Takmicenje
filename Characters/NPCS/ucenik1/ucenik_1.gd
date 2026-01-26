@@ -33,12 +33,13 @@ func _physics_process(delta: float) -> void:
 	phase1_anim.play("idle")
 
 
-func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(alert_sprite, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(alert_sprite, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
-	alert_sound.play()
-	start_battle.emit(self)
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var tween = get_tree().create_tween()
+		tween.tween_property(alert_sprite, "modulate:a", 1.0, 0.3).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(alert_sprite, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE)
+		alert_sound.play()
+		start_battle.emit(self)
 
 # handleri koje battle poziva SAMO za ovog učenika
 func _on_battle_half_monster_hp_left():

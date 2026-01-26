@@ -151,7 +151,8 @@ stream = ExtResource("5_u1ohb")
 volume_db = -19.809
 
 [node name="AlertedAnim" type="Sprite2D" parent="."]
-position = Vector2(0, -97)
+z_index = 10
+position = Vector2(0, -103)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("6_j8euh")
 
