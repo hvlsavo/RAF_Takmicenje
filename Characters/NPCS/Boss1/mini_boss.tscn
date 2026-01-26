@@ -1,10 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5bn6s2a34ddt"]
+[gd_scene load_steps=11 format=3 uid="uid://c5bn6s2a34ddt"]
 
 [ext_resource type="Script" uid="uid://c73wyn4wv1k0f" path="res://Characters/NPCS/Boss1/mini_boss.gd" id="1_216m1"]
 [ext_resource type="Texture2D" uid="uid://b3gobpb51x836" path="res://Assets/Spritesheets/miniboss_sprite1.png" id="1_vvspf"]
 [ext_resource type="Texture2D" uid="uid://ci53syjpqwxqn" path="res://Assets/Spritesheets/warning.png" id="2_yfsxm"]
 [ext_resource type="AudioStream" uid="uid://16r7lp5m0iow" path="res://Assets/Sound/alert.mp3" id="3_216m1"]
-[ext_resource type="Texture2D" uid="uid://bkpnt8lhgb2lq" path="res://Assets/textures/shadow.tres" id="4_rattq"]
+
+[sub_resource type="Animation" id="Animation_mvxp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_vvspf"]
 resource_name = "idle"
@@ -23,29 +37,25 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 4, 3, 2, 1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_mvxp8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w8h60"]
 _data = {
 &"RESET": SubResource("Animation_mvxp8"),
 &"idle": SubResource("Animation_vvspf")
 }
 
+[sub_resource type="Gradient" id="Gradient_liyct"]
+offsets = PackedFloat32Array(0.493506, 0.792208, 1)
+colors = PackedColorArray(0, 0, 0, 0.505882, 0.517647, 0.517647, 0.517647, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfsxm"]
+gradient = SubResource("Gradient_liyct")
+width = 220
+height = 220
+fill = 1
+fill_from = Vector2(0.5, 0.486239)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rattq"]
-size = Vector2(48, 242)
+size = Vector2(38, 242)
 
 [node name="Mini_boss" type="Node2D"]
 script = ExtResource("1_216m1")
@@ -70,17 +80,36 @@ stream = ExtResource("3_216m1")
 volume_db = -10.895
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -76.0
-offset_right = 75.0
-offset_bottom = 100.0
-texture = ExtResource("4_rattq")
+offset_left = -111.0
+offset_top = -83.0
+offset_right = 109.0
+offset_bottom = 148.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yfsxm")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, 43)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.99995, 12)
+position = Vector2(1.99993, 7)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_rattq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -146.0
+offset_right = 157.0
+offset_bottom = 127.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.627451)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

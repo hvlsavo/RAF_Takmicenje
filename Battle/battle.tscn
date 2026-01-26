@@ -1,68 +1,82 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4r5jfa2it0lp"]
+[gd_scene load_steps=11 format=3 uid="uid://b4r5jfa2it0lp"]
 
 [ext_resource type="Script" uid="uid://cg53txaeyc06i" path="res://Battle/battle.gd" id="1_ac2hh"]
+[ext_resource type="FontFile" uid="uid://dbl3favhv00sj" path="res://Battle/ui_elements/handwritefont.ttf" id="2_o5tja"]
+[ext_resource type="StyleBox" uid="uid://d1u3erpqy6htc" path="res://Battle/ui_elements/button_hover_box.tres" id="4_5pv0p"]
+[ext_resource type="Texture2D" uid="uid://215hwpdwsbf2" path="res://Assets/textures/loading_bar.png" id="5_0lqow"]
+[ext_resource type="StyleBox" uid="uid://buop7yyvbg7hg" path="res://Battle/ui_elements/dialogue_box.tres" id="5_do635"]
+[ext_resource type="Texture2D" uid="uid://dr4uwjbr03a5t" path="res://Assets/textures/loading_bar_fill.png" id="6_bjo3u"]
+[ext_resource type="FontFile" uid="uid://bh2ms3g1r6bwc" path="res://Battle/ui_elements/handwrite_dialg.ttf" id="6_ploow"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bjo3u"]
+texture = ExtResource("5_0lqow")
+texture_margin_top = 49.0
+texture_margin_bottom = 49.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ihngk"]
+texture = ExtResource("6_bjo3u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ploow"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_ac2hh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576, 191.355)
 
+[node name="StareButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 56.0
+offset_top = 310.0
+offset_right = 595.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 42
+text = "Gledaj"
+
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 56.0
-offset_top = 424.0
+offset_top = 391.0
 offset_right = 595.0
-offset_bottom = 720.0
+offset_bottom = 630.0
+alignment = 1
 
 [node name="ActButton" type="Button" parent="Buttons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 42
+theme_override_styles/hover_pressed = ExtResource("4_5pv0p")
 text = "Započni razgovor"
 
 [node name="RespondButton" type="Button" parent="Buttons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 42
+theme_override_styles/hover_pressed = ExtResource("4_5pv0p")
 text = "Odgovori"
 
 [node name="SilentButton" type="Button" parent="Buttons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 42
 text = "Ćuti"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 624.0
-offset_top = 424.0
-offset_right = 1040.0
-offset_bottom = 630.0
-theme_override_font_sizes/font_size = 20
-text = "Sva svetla trepere.
-Ne gleda te jedno čudovište.
-Gleda te previše njih.
-"
-autowrap_mode = 3
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1107.0
-offset_top = 170.0
-offset_right = 1163.0
-offset_bottom = 193.0
+offset_left = 1111.0
+offset_top = 162.0
+offset_right = 1153.0
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
+scale = Vector2(1.875, 1.875)
+theme_override_fonts/font = ExtResource("2_o5tja")
 text = "STRAH:"
 
 [node name="FearBar" type="ProgressBar" parent="."]
@@ -72,11 +86,37 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 1040.0
 offset_top = 96.0
-offset_right = 1069.0
+offset_right = 1084.0
 offset_bottom = 294.0
 grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_bjo3u")
+theme_override_styles/fill = SubResource("StyleBoxTexture_ihngk")
 fill_mode = 3
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 622.0
+offset_top = 391.0
+offset_right = 1069.0
+offset_bottom = 630.0
+theme_override_styles/panel = ExtResource("5_do635")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 440.0
+offset_bottom = 233.0
+theme_override_fonts/font = ExtResource("6_ploow")
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxTexture_ploow")
+text = "Sva svetla trepere.
+Ne gleda te jedno čudovište.
+Gleda te previše njih.
+"
+autowrap_mode = 3
+
+[connection signal="pressed" from="StareButton" to="." method="_on_stare_button_pressed"]
 [connection signal="pressed" from="Buttons/ActButton" to="." method="_on_act_button_pressed"]
 [connection signal="pressed" from="Buttons/RespondButton" to="." method="_on_respond_button_pressed"]
 [connection signal="pressed" from="Buttons/SilentButton" to="." method="_on_silent_button_pressed"]
