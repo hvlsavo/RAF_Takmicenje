@@ -7,6 +7,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ac2hh")
@@ -43,8 +45,37 @@ offset_top = 424.0
 offset_right = 1040.0
 offset_bottom = 630.0
 theme_override_font_sizes/font_size = 20
-text = "Sreo si čudovište..."
+text = "Sva svetla trepere.
+Ne gleda te jedno čudovište.
+Gleda te previše njih.
+"
 autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1107.0
+offset_top = 170.0
+offset_right = 1163.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+text = "STRAH:"
+
+[node name="FearBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1040.0
+offset_top = 96.0
+offset_right = 1069.0
+offset_bottom = 294.0
+grow_horizontal = 2
+fill_mode = 3
 
 [connection signal="pressed" from="Buttons/ActButton" to="." method="_on_act_button_pressed"]
 [connection signal="pressed" from="Buttons/RespondButton" to="." method="_on_respond_button_pressed"]

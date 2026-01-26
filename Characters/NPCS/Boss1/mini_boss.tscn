@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5bn6s2a34ddt"]
+
+[ext_resource type="Script" uid="uid://c73wyn4wv1k0f" path="res://Characters/NPCS/Boss1/mini_boss.gd" id="1_216m1"]
+[ext_resource type="Texture2D" uid="uid://b3gobpb51x836" path="res://Assets/Spritesheets/miniboss_sprite1.png" id="1_vvspf"]
+[ext_resource type="Texture2D" uid="uid://ci53syjpqwxqn" path="res://Assets/Spritesheets/warning.png" id="2_yfsxm"]
+[ext_resource type="AudioStream" uid="uid://16r7lp5m0iow" path="res://Assets/Sound/alert.mp3" id="3_216m1"]
+[ext_resource type="Texture2D" uid="uid://bkpnt8lhgb2lq" path="res://Assets/textures/shadow.tres" id="4_rattq"]
+
+[sub_resource type="Animation" id="Animation_vvspf"]
+resource_name = "idle"
+length = 4.4845
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.933333, 1.43333, 1.86667, 2.26667, 2.73333, 3.2, 3.66667, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_mvxp8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8h60"]
+_data = {
+&"RESET": SubResource("Animation_mvxp8"),
+&"idle": SubResource("Animation_vvspf")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rattq"]
+size = Vector2(48, 242)
+
+[node name="Mini_boss" type="Node2D"]
+script = ExtResource("1_216m1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vvspf")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w8h60")
+}
+
+[node name="AlertedAnim" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-2, -43)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_yfsxm")
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="AlertedAnim"]
+stream = ExtResource("3_216m1")
+volume_db = -10.895
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -76.0
+offset_right = 75.0
+offset_bottom = 100.0
+texture = ExtResource("4_rattq")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-1, 43)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.99995, 12)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_rattq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

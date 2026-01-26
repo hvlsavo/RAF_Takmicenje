@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=16 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://wiwn0jcewpto" path="res://Assets/Spritesheets/npc_monster_alt1_phase2.png" id="8_f3gf5"]
 [ext_resource type="Texture2D" uid="uid://c7jwc50xp3iwi" path="res://Assets/Spritesheets/npc_sprite_2.png" id="8_qac2q"]
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="13_rix8b"]
+[ext_resource type="PackedScene" uid="uid://c5bn6s2a34ddt" path="res://Characters/NPCS/Boss1/mini_boss.tscn" id="14_0jx5h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3gf5"]
 size = Vector2(126, 29)
@@ -81,7 +82,12 @@ offset_top = -363.0
 offset_right = -621.0
 offset_bottom = -363.0
 
+[node name="Mini_boss" parent="." groups=["mini_boss"] instance=ExtResource("14_0jx5h")]
+position = Vector2(1585, -1397)
+scale = Vector2(3.405, 3.405)
+
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
 [connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]
 [connection signal="player_won" from="Player/Battle" to="." method="_on_battle_player_won"]
+[connection signal="start_miniboss_battle" from="Mini_boss" to="." method="_on_mini_boss_start_miniboss_battle"]

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var battle_scene = $Player/Battle
 @onready var player = $Player
-
+@onready var player_camera = $Player/Camera2D
 #Door 1
 @onready var door = $Door
 @onready var door_tile = $Door/DoorTile
@@ -54,6 +54,13 @@ func _on_door_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var tween = get_tree().create_tween()
 		tween.tween_property(door_tile, "modulate:a", 0.0, 0.4)
-		door_collision.disabled = true
+		door_collision.set_deferred("disabled", true)
 		set_deferred("monitoring", false)
 		
+
+func _on_mini_boss_start_miniboss_battle(boss):
+	var tween = get_tree().create_tween()
+	tween.tween_property(player_camera, "zoom", Vector2(0.8, 0.8), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	player.speed = 0
+	battle_scene.is_mini_boss = true
+	battle_scene.start(boss)

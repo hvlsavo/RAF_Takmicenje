@@ -161,10 +161,10 @@ stream = ExtResource("7_8p72n")
 volume_db = -10.895
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -31.8358
-offset_top = -23.005
-offset_right = 32.1642
-offset_bottom = 40.995
+offset_left = -50.0
+offset_top = -21.0
+offset_right = 50.0
+offset_bottom = 79.0
 texture = ExtResource("8_so18h")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
