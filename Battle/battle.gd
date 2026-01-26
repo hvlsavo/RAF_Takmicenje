@@ -57,7 +57,7 @@ func _reset_battle():
 	act_button.disabled = false
 	respond_button.disabled = false
 	silent_button.disabled = false
-	act_button.text = "Započni razgovor"
+	act_button.text = "Pokreni razgovor."
 
 func check_battle_end() -> bool:
 	if monster_hp <= 0:
