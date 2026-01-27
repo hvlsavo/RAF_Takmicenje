@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=7 format=3 uid="uid://bxe5utkhn5stn"]
+
+[ext_resource type="Script" uid="uid://yivwmkfwrvfr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.gd" id="1_pmyka"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="1_xtlgr"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="2_pmyka"]
+
+[sub_resource type="PackedScene" id="PackedScene_qdhgu"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Custom", "script", "CanvasLayer"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0),
+"variants": [ExtResource("1_pmyka")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_pmyka"]
+script = ExtResource("1_xtlgr")
+scene = SubResource("PackedScene_qdhgu")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_4yrm2"]
+script = ExtResource("1_xtlgr")
+overrides = {}
+
+[resource]
+script = ExtResource("2_pmyka")
+name = "style"
+layer_list = Array[String](["10"])
+layer_info = {
+"": SubResource("Resource_pmyka"),
+"10": SubResource("Resource_4yrm2")
+}
+base_overrides = {}
+layers = Array[ExtResource("1_xtlgr")]([])
+metadata/_latest_layer = "10"

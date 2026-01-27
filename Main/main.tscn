@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=19 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -15,6 +15,12 @@
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="13_rix8b"]
 [ext_resource type="PackedScene" uid="uid://c5bn6s2a34ddt" path="res://Characters/NPCS/Boss1/mini_boss.tscn" id="14_0jx5h"]
 [ext_resource type="PackedScene" uid="uid://cf8w2bocp0anf" path="res://menus/game_over.tscn" id="14_uhr2j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr2j"]
+size = Vector2(137, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5bfp"]
+size = Vector2(25.1239, 17.438)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3gf5"]
 size = Vector2(126, 29)
@@ -47,12 +53,32 @@ phase_1 = ExtResource("4_liyct")
 phase_2 = ExtResource("5_ib3t1")
 phase_3 = ExtResource("8_qac2q")
 
+[node name="Locked_door" type="Area2D" parent="."]
+position = Vector2(2196.5, 13.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Locked_door"]
+z_index = 1
+position = Vector2(-1, 19)
+shape = SubResource("RectangleShape2D_uhr2j")
+
+[node name="DoorTile" type="TileMapLayer" parent="Locked_door"]
+position = Vector2(20.5, -13.5)
+scale = Vector2(6.05, 6.05)
+tile_map_data = PackedByteArray("AAD+//7/AAAJAA8AAAD+////AAAJABAAAAD///7/AAAKAA8AAAD/////AAAKABAAAAAAAP7/AAALAA8AAAAAAP//AAALABAAAAD//wAAAAAOABIAAAD+/wAAAAANABIAAAAAAAAAAAAPABIAAAA=")
+tile_set = ExtResource("13_rix8b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Locked_door/DoorTile"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Locked_door/DoorTile/StaticBody2D"]
+position = Vector2(-2.97522, -8.71901)
+shape = SubResource("RectangleShape2D_l5bfp")
+
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(1522, -806)
 
 [node name="DoorTile" type="TileMapLayer" parent="Door"]
 position = Vector2(20.5, -13.5)
-scale = Vector2(6.025, 6.025)
+scale = Vector2(6.05, 6.05)
 tile_map_data = PackedByteArray("AAD+//7/AAAJAA8AAAD+////AAAJABAAAAD///7/AAAKAA8AAAD/////AAAKABAAAAAAAP7/AAALAA8AAAAAAP//AAALABAAAAD//wAAAAAOABIAAAD+/wAAAAANABIAAAAAAAAAAAAPABIAAAA=")
 tile_set = ExtResource("13_rix8b")
 
@@ -67,7 +93,6 @@ position = Vector2(1551, 211)
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
 z_index = 17
-anchors_preset = 15
 offset_left = 0.0
 offset_top = -47.0
 offset_right = 0.0
@@ -84,6 +109,8 @@ position = Vector2(1585, -1397)
 scale = Vector2(3.405, 3.405)
 
 [connection signal="mini_boss_defeated" from="." to="Mini_boss" method="_on_main_mini_boss_defeated"]
+[connection signal="body_entered" from="Locked_door" to="." method="_on_locked_door_body_entered"]
+[connection signal="body_exited" from="Locked_door" to="." method="_on_locked_door_body_exited"]
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
 [connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]

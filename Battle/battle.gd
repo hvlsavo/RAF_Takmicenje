@@ -47,6 +47,7 @@ var monster_responses = [
 ]
 
 func start(ucenik: Node):
+	act_button.grab_focus()
 	current_ucenik = ucenik
 	visible = true
 	_reset_battle()

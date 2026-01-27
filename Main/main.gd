@@ -10,6 +10,14 @@ extends Node2D
 @onready var door_collision = $Door/CollisionShape2D
 
 
+#dialogue
+var dialogue_locked = false
+#door 2
+var is_player_near = false
+var door_locked_timeline : DialogicTimeline = load("res://dialogue/timelines/checking_door.dtl")
+
+
+
 var social_credit = 0
 
 
@@ -39,6 +47,8 @@ func _physics_process(delta: float) -> void:
 			direction = -1
 		elif ucenik_3.position.x < ucenik_3_start_x - ucenik_3_move_limit:
 			direction = 1
+	if is_player_near and Input.is_action_just_pressed("ui_accept") and dialogue_locked == false:
+		_check_locked_door()
 
 func _on_ucenik_start_battle(ucenik):
 	ucenik_moving = false
@@ -83,3 +93,21 @@ func _on_mini_boss_start_miniboss_battle(boss):
 func _on_game_over_try_again() -> void:
 	game_over.hide()
 	battle_scene.start(battle_scene.current_ucenik)
+
+
+func _on_locked_door_body_entered(body:Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_near = true
+		
+
+func _on_locked_door_body_exited(body:Node2D) -> void:
+	if body.is_in_group("player"):
+		is_player_near = false
+
+func _check_locked_door() -> void:
+	dialogue_locked = true
+	Dialogic.start(door_locked_timeline)
+	player.speed = 0
+	await Dialogic.timeline_ended
+	player.speed = 200
+	dialogue_locked = false
