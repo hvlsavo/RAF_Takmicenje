@@ -3,6 +3,7 @@ extends Node2D
 @onready var battle_scene = $Player/Battle
 @onready var player = $Player
 @onready var player_camera = $Player/Camera2D
+@onready var game_over = $Player/game_over
 #Door 1
 @onready var door = $Door
 @onready var door_tile = $Door/DoorTile
@@ -19,6 +20,10 @@ var direction = 1
 var ucenik_3_start_x = 0.0
 var ucenik_moving = true
 
+#mini boss
+@onready var mini_boss = $Mini_boss
+var is_mini_boss_defeated = false
+signal mini_boss_defeated
 
 func _ready():
 	ucenik_3_start_x = ucenik_3.position.x
@@ -42,10 +47,17 @@ func _on_ucenik_start_battle(ucenik):
 	ucenik.area2d.set_deferred("monitoring", false)
 
 func _on_battle_player_won():
+	if is_mini_boss_defeated == false and battle_scene.is_mini_boss:
+		is_mini_boss_defeated = true
+		var tween = get_tree().create_tween()
+		tween.tween_property(player_camera, "zoom", Vector2(1, 1), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(battle_scene, "scale", Vector2(1.0, 1.0), 0.7)
 	social_credit += 1
 	player.speed = 200
 
 func _on_battle_player_lost():
+	if battle_scene.is_mini_boss:
+		game_over.show()
 	if social_credit > 0:
 		social_credit -= 1
 	player.speed = 200
@@ -60,7 +72,14 @@ func _on_door_body_entered(body: Node2D) -> void:
 
 func _on_mini_boss_start_miniboss_battle(boss):
 	var tween = get_tree().create_tween()
+	tween.set_parallel()
 	tween.tween_property(player_camera, "zoom", Vector2(0.8, 0.8), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(battle_scene, "scale", Vector2(1.25, 1.25), 0.7)
 	player.speed = 0
 	battle_scene.is_mini_boss = true
 	battle_scene.start(boss)
+
+
+func _on_game_over_try_again() -> void:
+	game_over.hide()
+	battle_scene.start(battle_scene.current_ucenik)

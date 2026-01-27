@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=17 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c7jwc50xp3iwi" path="res://Assets/Spritesheets/npc_sprite_2.png" id="8_qac2q"]
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="13_rix8b"]
 [ext_resource type="PackedScene" uid="uid://c5bn6s2a34ddt" path="res://Characters/NPCS/Boss1/mini_boss.tscn" id="14_0jx5h"]
+[ext_resource type="PackedScene" uid="uid://cf8w2bocp0anf" path="res://menus/game_over.tscn" id="14_uhr2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3gf5"]
 size = Vector2(126, 29)
@@ -21,17 +22,6 @@ size = Vector2(126, 29)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k3v36")
 ucenik_3_move_limit = 95
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -26816.0
-offset_top = -42084.0
-offset_right = 9.22337e+18
-offset_bottom = 9.22337e+18
-color = Color(0, 0, 0, 0.552941)
 
 [node name="School" parent="." instance=ExtResource("1_2w1kt")]
 scale = Vector2(6.025, 6.025)
@@ -72,21 +62,31 @@ shape = SubResource("RectangleShape2D_f3gf5")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(1510, -281)
+position = Vector2(1551, 211)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
+visible = false
 z_index = 17
-offset_left = -621.0
-offset_top = -363.0
-offset_right = -621.0
-offset_bottom = -363.0
+anchors_preset = 15
+offset_left = 0.0
+offset_top = -47.0
+offset_right = 0.0
+offset_bottom = -47.0
+
+[node name="game_over" parent="Player" instance=ExtResource("14_uhr2j")]
+visible = false
+offset_top = -47.0
+offset_bottom = -47.0
+scale = Vector2(1.25, 1.25)
 
 [node name="Mini_boss" parent="." groups=["mini_boss"] instance=ExtResource("14_0jx5h")]
 position = Vector2(1585, -1397)
 scale = Vector2(3.405, 3.405)
 
+[connection signal="mini_boss_defeated" from="." to="Mini_boss" method="_on_main_mini_boss_defeated"]
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
 [connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
 [connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]
 [connection signal="player_won" from="Player/Battle" to="." method="_on_battle_player_won"]
+[connection signal="try_again" from="Player/game_over" to="." method="_on_game_over_try_again"]
 [connection signal="start_miniboss_battle" from="Mini_boss" to="." method="_on_mini_boss_start_miniboss_battle"]

@@ -55,7 +55,7 @@ func start(ucenik: Node):
 		fearbar.visible = true
 		fearbar_label.visible = true
 		stare_button.visible = true
-		fearbar.value = fearbar.max_value / 1.33333
+		fearbar.value = 75
 		print("mini")
 		label.text = "Sva svetla trepere,ne gleda te jedno čudovište,već više njih."
 
@@ -137,8 +137,9 @@ func _delayed_player_lost() -> void:
 # dugmad
 func _on_act_button_pressed():
 	if battle_over: return
+	silent_count = 0
 	if is_mini_boss:
-		silent_count = 0
+		print(silent_count)
 		label.text = "Pokušavaš da kažeš nešto normalno.Rečenica ti zapne na pola.Oni kažu: \"Zašto se uopšte trudiš?\""
 		fearbar.value += 10
 		if check_battle_end(): return
@@ -160,8 +161,9 @@ func _on_act_button_pressed():
 
 func _on_respond_button_pressed():
 	if battle_over: return
+	silent_count = 0
 	if is_mini_boss:
-		silent_count = 0
+		print(silent_count)
 		if not first_act_done:
 			label.text = "Odgovorio si iskreno.Nekoliko ociju su se zatvorile."
 			fearbar.value -= 15
@@ -202,6 +204,7 @@ func _on_silent_button_pressed():
 
 
 func _on_stare_button_pressed() -> void:
+	silent_count = 0
 	if is_mini_boss:
 		label.text = "Gledaš u njih, ne trepćući.Ne znaš šta će se desiti."
 		var rng = RandomNumberGenerator.new()
