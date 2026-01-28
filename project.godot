@@ -23,7 +23,13 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={}
 directories/dtl_directory={
-"checking_door": "res://dialogue/timelines/checking_door.dtl"
+"checking_door": "res://dialogue/timelines/checking_door.dtl",
+"entrance_door": "res://dialogue/timelines/entrance_door.dtl",
+"first_key": "res://dialogue/timelines/first_key.dtl",
+"lockers": "res://dialogue/timelines/lockers.dtl",
+"lounge_lockers": "res://dialogue/timelines/lounge_lockers.dtl",
+"second_key": "res://dialogue/timelines/second_key.dtl",
+"vending": "res://dialogue/timelines/vending.dtl"
 }
 layout/style_directory={
 "": "res://dialogue/style/New_File.tres",

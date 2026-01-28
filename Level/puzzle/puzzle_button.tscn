@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://buhf4hd0y5d1j"]
+
+[ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="1_f6fvy"]
+[ext_resource type="Script" uid="uid://dj3u8jl0nd5lv" path="res://Level/puzzle/puzzle_button.gd" id="1_locg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_locg7"]
+size = Vector2(6, 5)
+
+[node name="Puzzle_button" type="Node2D"]
+script = ExtResource("1_locg7")
+
+[node name="empty_heart" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 8, 0, 22, 0, 0, 0)
+tile_set = ExtResource("1_f6fvy")
+
+[node name="full_heart" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 8, 0, 23, 0, 0, 0)
+tile_set = ExtResource("1_f6fvy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -4.5)
+shape = SubResource("RectangleShape2D_locg7")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

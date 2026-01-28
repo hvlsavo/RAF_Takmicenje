@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=29 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
 [ext_resource type="PackedScene" uid="uid://cr2twmc0uvpup" path="res://Characters/Player/player.tscn" id="2_qvhan"]
 [ext_resource type="PackedScene" uid="uid://b8ks3ebgvhqj7" path="res://Characters/NPCS/ucenik1/ucenik_1.tscn" id="3_qvhan"]
+[ext_resource type="Script" uid="uid://u55bc4jityc4" path="res://Main/puzzle.gd" id="3_wbdht"]
 [ext_resource type="PackedScene" uid="uid://b4r5jfa2it0lp" path="res://Battle/battle.tscn" id="4_eunhr"]
 [ext_resource type="Texture2D" uid="uid://w7sn5gke0u4y" path="res://Assets/Spritesheets/npc_monster.png" id="4_liyct"]
+[ext_resource type="PackedScene" uid="uid://buhf4hd0y5d1j" path="res://Level/puzzle/puzzle_button.tscn" id="4_puekb"]
 [ext_resource type="Texture2D" uid="uid://bn4wwm62m16tk" path="res://Assets/Spritesheets/npc_monster_phase2.png" id="5_ib3t1"]
 [ext_resource type="Texture2D" uid="uid://6v744jyhqs63" path="res://Assets/Spritesheets/npc_sprite_1.png" id="6_rj11h"]
 [ext_resource type="Texture2D" uid="uid://d1u76w7uynw35" path="res://Assets/Spritesheets/npc_monster_alt1.png" id="7_o60nc"]
@@ -15,6 +17,8 @@
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="13_rix8b"]
 [ext_resource type="PackedScene" uid="uid://c5bn6s2a34ddt" path="res://Characters/NPCS/Boss1/mini_boss.tscn" id="14_0jx5h"]
 [ext_resource type="PackedScene" uid="uid://cf8w2bocp0anf" path="res://menus/game_over.tscn" id="14_uhr2j"]
+[ext_resource type="PackedScene" uid="uid://bsvs8se2pp632" path="res://Level/1stkey.tscn" id="16_guo5i"]
+[ext_resource type="Script" uid="uid://duwysq7gibnpa" path="res://Main/interactables.gd" id="16_l5bfp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr2j"]
 size = Vector2(137, 20)
@@ -25,12 +29,120 @@ size = Vector2(25.1239, 17.438)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3gf5"]
 size = Vector2(126, 29)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guo5i"]
+size = Vector2(532, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gq1e"]
+size = Vector2(146, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puekb"]
+size = Vector2(68, 75.0625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbdht"]
+size = Vector2(138, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi84t"]
+size = Vector2(132, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4inf"]
+size = Vector2(179.5, 142)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k3v36")
 ucenik_3_move_limit = 95
 
 [node name="School" parent="." instance=ExtResource("1_2w1kt")]
 scale = Vector2(6.025, 6.025)
+
+[node name="Puzzle" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("3_wbdht")
+target_puzzle_blocks = 15
+
+[node name="Puzzle_button1" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2712, -2301)
+scale = Vector2(6.025, 6.025)
+
+[node name="Puzzle_button2" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2712, -2379)
+scale = Vector2(6.025, 6.025)
+heart_id = 1
+
+[node name="Puzzle_button3" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2793, -2379)
+scale = Vector2(6.025, 6.025)
+heart_id = 1
+
+[node name="Puzzle_button4" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2873, -2379)
+scale = Vector2(6.025, 6.025)
+heart_id = 3
+
+[node name="Puzzle_button5" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2873, -2301)
+scale = Vector2(6.025, 6.025)
+heart_id = 4
+
+[node name="Puzzle_button6" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2873, -2226)
+scale = Vector2(6.025, 6.025)
+heart_id = 5
+
+[node name="Puzzle_button7" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2793, -2226)
+scale = Vector2(6.025, 6.025)
+heart_id = 6
+
+[node name="Puzzle_button8" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2712, -2226)
+scale = Vector2(6.025, 6.025)
+heart_id = 7
+
+[node name="Puzzle_button9" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2873, -2448)
+scale = Vector2(6.025, 6.025)
+heart_id = 8
+
+[node name="Puzzle_button10" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2940, -2518)
+scale = Vector2(6.025, 6.025)
+heart_id = 9
+
+[node name="Puzzle_button11" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(3007, -2518)
+scale = Vector2(6.025, 6.025)
+heart_id = 10
+
+[node name="Puzzle_button12" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(2873, -2518)
+scale = Vector2(6.025, 6.025)
+heart_id = 11
+
+[node name="Puzzle_button13" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(3077, -2518)
+scale = Vector2(6.025, 6.025)
+heart_id = 12
+
+[node name="Puzzle_button14" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(3077, -2448)
+scale = Vector2(6.025, 6.025)
+heart_id = 13
+
+[node name="Puzzle_button15" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(3007, -2380)
+scale = Vector2(6.025, 6.025)
+heart_id = 14
+
+[node name="Puzzle_button16" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
+position = Vector2(3077, -2234)
+scale = Vector2(6.025, 6.025)
+heart_id = 15
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Puzzle"]
+position = Vector2(13, -37)
+scale = Vector2(6.025, 6.025)
+tile_map_data = PackedByteArray("AAA6AND/AAAJAAUAAAA9AM3/AAAJAAUAAAA+AM3/AAAJAAUAAAA9AND/AAAJAAUAAAA+AND/AAAJAAUAAAA/AND/AAAJAAUAAAA4AM3/AAAJAAUAAAA3AM7/AAAJAAUAAAA3AM//AAAJAAUAAAA3AND/AAAJAAUAAAA3ANH/AAAJAAUAAAA3ANL/AAAJAAUAAAA4ANP/AAAJAAUAAAA5ANP/AAAJAAUAAAA6ANP/AAAJAAUAAAA6AMr/AAAJAAUAAAA7AMr/AAAJAAUAAAA8AMr/AAAJAAUAAAA9AMr/AAAJAAUAAAA+AMr/AAAJAAUAAAA/AMr/AAAJAAUAAABAAMr/AAAJAAUAAAA=")
+tile_set = ExtResource("13_rix8b")
 
 [node name="Ucenik1" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
 position = Vector2(606, 85)
@@ -86,9 +198,13 @@ tile_set = ExtResource("13_rix8b")
 position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_f3gf5")
 
+[node name="1stkey" parent="." instance=ExtResource("16_guo5i")]
+position = Vector2(3543, -690)
+scale = Vector2(2.14, 2.14)
+
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(1551, 211)
+position = Vector2(3021, -2131)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
@@ -105,15 +221,130 @@ offset_bottom = -47.0
 scale = Vector2(1.25, 1.25)
 
 [node name="Mini_boss" parent="." groups=["mini_boss"] instance=ExtResource("14_0jx5h")]
+visible = false
 position = Vector2(1585, -1397)
 scale = Vector2(3.405, 3.405)
 
+[node name="Interactables" type="Node" parent="."]
+script = ExtResource("16_l5bfp")
+
+[node name="Lockers" type="Area2D" parent="Interactables"]
+position = Vector2(139, 59)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(223, -0.5)
+shape = SubResource("RectangleShape2D_guo5i")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(223, 267.5)
+shape = SubResource("RectangleShape2D_guo5i")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(1690.5, 8.75)
+shape = SubResource("RectangleShape2D_0gq1e")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(2344, 6)
+shape = SubResource("RectangleShape2D_0gq1e")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(994, -1704.06)
+shape = SubResource("RectangleShape2D_puekb")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(1896, -1699)
+shape = SubResource("RectangleShape2D_puekb")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(2417, -1415.53)
+shape = SubResource("RectangleShape2D_puekb")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Interactables/Lockers"]
+position = Vector2(3436, -1430)
+shape = SubResource("RectangleShape2D_puekb")
+
+[node name="Entrance_door" type="Area2D" parent="Interactables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Entrance_door"]
+position = Vector2(-69, 31)
+shape = SubResource("RectangleShape2D_wbdht")
+
+[node name="Vending" type="Area2D" parent="Interactables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Vending"]
+position = Vector2(1385, -1646)
+shape = SubResource("RectangleShape2D_xi84t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactables/Vending"]
+position = Vector2(1770, -1645)
+shape = SubResource("RectangleShape2D_xi84t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Interactables/Vending"]
+position = Vector2(2209, -1361)
+shape = SubResource("RectangleShape2D_xi84t")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Interactables/Vending"]
+position = Vector2(2663, -1354)
+shape = SubResource("RectangleShape2D_xi84t")
+
+[node name="lounge_lockers" type="Area2D" parent="Interactables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/lounge_lockers"]
+position = Vector2(3403.25, -796)
+shape = SubResource("RectangleShape2D_j4inf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactables/lounge_lockers"]
+position = Vector2(3706, -797)
+shape = SubResource("RectangleShape2D_j4inf")
+
 [connection signal="mini_boss_defeated" from="." to="Mini_boss" method="_on_main_mini_boss_defeated"]
+[connection signal="secondkey_obtained" from="Puzzle" to="." method="_on_puzzle_secondkey_obtained"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button4" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button4" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button5" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button5" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button6" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button6" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button7" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button7" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button8" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button8" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button9" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button9" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button10" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button10" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button11" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button11" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button12" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button12" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button13" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button13" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button14" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button14" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button15" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button15" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
+[connection signal="button_pressed" from="Puzzle/Puzzle_button16" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
+[connection signal="button_unpressed" from="Puzzle/Puzzle_button16" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
 [connection signal="body_entered" from="Locked_door" to="." method="_on_locked_door_body_entered"]
 [connection signal="body_exited" from="Locked_door" to="." method="_on_locked_door_body_exited"]
 [connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]
+[connection signal="first_key_obtained" from="1stkey" to="." method="_on_stkey_first_key_obtained"]
+[connection signal="interaction_over" from="1stkey" to="." method="_on_stkey_interaction_over"]
+[connection signal="interaction_started" from="1stkey" to="." method="_on_stkey_interaction_started"]
 [connection signal="half_monster_hp_left" from="Player/Battle" to="." method="_on_battle_half_monster_hp_left"]
 [connection signal="player_lost" from="Player/Battle" to="." method="_on_battle_player_lost"]
 [connection signal="player_won" from="Player/Battle" to="." method="_on_battle_player_won"]
 [connection signal="try_again" from="Player/game_over" to="." method="_on_game_over_try_again"]
 [connection signal="start_miniboss_battle" from="Mini_boss" to="." method="_on_mini_boss_start_miniboss_battle"]
+[connection signal="interaction_over" from="Interactables" to="." method="_on_interactables_interaction_over"]
+[connection signal="interaction_started" from="Interactables" to="." method="_on_interactables_interaction_started"]
+[connection signal="body_entered" from="Interactables/Lockers" to="Interactables" method="_on_lockers_body_entered"]
+[connection signal="body_exited" from="Interactables/Lockers" to="Interactables" method="_on_lockers_body_exited"]
+[connection signal="body_entered" from="Interactables/Entrance_door" to="Interactables" method="_on_entrance_door_body_entered"]
+[connection signal="body_exited" from="Interactables/Entrance_door" to="Interactables" method="_on_entrance_door_body_exited"]
+[connection signal="body_entered" from="Interactables/Vending" to="Interactables" method="_on_vending_body_entered"]
+[connection signal="body_exited" from="Interactables/Vending" to="Interactables" method="_on_vending_body_exited"]
+[connection signal="body_entered" from="Interactables/lounge_lockers" to="Interactables" method="_on_lounge_lockers_body_entered"]
+[connection signal="body_exited" from="Interactables/lounge_lockers" to="Interactables" method="_on_lounge_lockers_body_exited"]
