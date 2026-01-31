@@ -43,12 +43,12 @@ _data = {
 &"idle": SubResource("Animation_vvspf")
 }
 
-[sub_resource type="Gradient" id="Gradient_liyct"]
+[sub_resource type="Gradient" id="Gradient_yfsxm"]
 offsets = PackedFloat32Array(0.493506, 0.792208, 1)
 colors = PackedColorArray(0, 0, 0, 0.505882, 0.517647, 0.517647, 0.517647, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yfsxm"]
-gradient = SubResource("Gradient_liyct")
+gradient = SubResource("Gradient_yfsxm")
 width = 220
 height = 220
 fill = 1

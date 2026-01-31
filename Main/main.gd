@@ -28,7 +28,14 @@ var door_locked_timeline: DialogicTimeline = preload("res://dialogue/timelines/c
 
 # Mini boss
 var is_mini_boss_defeated: bool = false
-signal mini_boss_defeated
+
+#Final boss
+@onready var cam_marker = $Final_Boss/Camera_Marker
+var final_boss_dialogue: DialogicTimeline = preload("res://dialogue/timelines/final_boss.dtl")
+@onready var final_boss_battle = $Final_boss_fight
+signal final_boss_started
+
+
 
 # Pomeranje NPC
 @export var ucenik_3_move_limit: int = 40
@@ -42,7 +49,6 @@ func _ready() -> void:
 		ucenik.connect("start_battle", Callable(self, "_on_ucenik_start_battle"))
 
 func _physics_process(delta: float) -> void:
-	print(keys)
 	_move_ucenik(delta)
 	_handle_locked_door_input()
 
@@ -144,3 +150,22 @@ func _on_puzzle_secondkey_obtained() -> void:
 	_lock_player()
 	await Dialogic.timeline_ended
 	_unlock_player()
+
+
+func _on_final_boss_final_battle_started() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(player.get_node("Camera2D"), "global_position", cam_marker.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_lock_player()
+	Dialogic.start(final_boss_dialogue)
+	await Dialogic.timeline_ended
+	final_boss_battle.set_process(false)
+	final_boss_battle.set_physics_process(false)
+	final_boss_battle.visible = true
+	final_boss_battle.modulate.a = 0.0
+	var tween2 = get_tree().create_tween()
+	tween2.tween_property(final_boss_battle, "modulate:a", 1.0, 1.0)
+	await tween2.finished
+	final_boss_battle.set_process(true)
+	final_boss_battle.set_physics_process(true)
+	final_boss_started.emit()
+

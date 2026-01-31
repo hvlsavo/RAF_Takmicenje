@@ -1,25 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4r5jfa2it0lp"]
+[gd_scene load_steps=10 format=3 uid="uid://b4r5jfa2it0lp"]
 
 [ext_resource type="Script" uid="uid://cg53txaeyc06i" path="res://Battle/battle.gd" id="1_ac2hh"]
 [ext_resource type="FontFile" uid="uid://dbl3favhv00sj" path="res://Battle/ui_elements/handwritefont.ttf" id="2_o5tja"]
 [ext_resource type="StyleBox" uid="uid://d1u3erpqy6htc" path="res://Battle/ui_elements/button_hover_box.tres" id="4_5pv0p"]
 [ext_resource type="StyleBox" uid="uid://f63wufns1nq1" path="res://Battle/ui_elements/button_box.tres" id="4_bjo3u"]
-[ext_resource type="Texture2D" uid="uid://215hwpdwsbf2" path="res://Assets/textures/loading_bar.png" id="5_0lqow"]
+[ext_resource type="StyleBox" uid="uid://fscmkqswnrkk" path="res://Battle/ui_elements/fearbarbg.tres" id="5_bjo3u"]
 [ext_resource type="StyleBox" uid="uid://buop7yyvbg7hg" path="res://Battle/ui_elements/dialogue_box.tres" id="5_do635"]
+[ext_resource type="StyleBox" uid="uid://b5fkkeeaxgyxp" path="res://Battle/ui_elements/fearbarfill.tres" id="6_ihngk"]
 [ext_resource type="FontFile" uid="uid://bh2ms3g1r6bwc" path="res://Battle/ui_elements/handwrite_dialg.ttf" id="6_ploow"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bjo3u"]
-texture = ExtResource("5_0lqow")
-texture_margin_top = 49.0
-texture_margin_bottom = 49.0
-expand_margin_left = 8.0
-expand_margin_top = 7.0
-expand_margin_right = 8.0
-expand_margin_bottom = 7.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lqow"]
-bg_color = Color(0, 0, 0, 1)
-corner_detail = 4
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ploow"]
 
@@ -123,8 +111,8 @@ offset_top = -199.0
 offset_right = 522.0
 offset_bottom = -1.0
 grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxTexture_bjo3u")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0lqow")
+theme_override_styles/background = ExtResource("5_bjo3u")
+theme_override_styles/fill = ExtResource("6_ihngk")
 value = 75.0
 fill_mode = 3
 

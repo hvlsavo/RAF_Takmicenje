@@ -18,13 +18,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"final_boss_char": "res://dialogue/timelines/final_boss_char.dch"
+}
 directories/dtl_directory={
 "checking_door": "res://dialogue/timelines/checking_door.dtl",
 "entrance_door": "res://dialogue/timelines/entrance_door.dtl",
+"final_boss": "res://dialogue/timelines/final_boss.dtl",
 "first_key": "res://dialogue/timelines/first_key.dtl",
 "lockers": "res://dialogue/timelines/lockers.dtl",
 "lounge_lockers": "res://dialogue/timelines/lounge_lockers.dtl",
@@ -33,15 +37,16 @@ directories/dtl_directory={
 }
 layout/style_directory={
 "": "res://dialogue/style/New_File.tres",
-"New_File": "res://dialogue/style/New_File.tres"
+"New_File": "res://dialogue/style/New_File.tres",
+"fbstyl": "res://dialogue/style/fbstyl.tres"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://dialogue/style/New_File.tres"]
+layout/style_list=["res://dialogue/style/New_File.tres", "res://dialogue/style/fbstyl.tres"]
 layout/default_style="res://dialogue/style/New_File.tres"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/dialogic/plugin.cfg")
 
 [input]
 

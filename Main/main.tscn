@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=31 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cf8w2bocp0anf" path="res://menus/game_over.tscn" id="14_uhr2j"]
 [ext_resource type="PackedScene" uid="uid://bsvs8se2pp632" path="res://Level/1stkey.tscn" id="16_guo5i"]
 [ext_resource type="Script" uid="uid://duwysq7gibnpa" path="res://Main/interactables.gd" id="16_l5bfp"]
+[ext_resource type="PackedScene" uid="uid://b8x6kwsjvv7m1" path="res://Characters/NPCS/boss2/final_boss.tscn" id="20_puekb"]
+[ext_resource type="PackedScene" uid="uid://bghfio8fj7lup" path="res://Characters/NPCS/boss2/final_boss_fight.tscn" id="21_xi84t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr2j"]
 size = Vector2(137, 20)
@@ -204,7 +206,7 @@ scale = Vector2(2.14, 2.14)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(3021, -2131)
+position = Vector2(3708, -1632)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
@@ -221,7 +223,6 @@ offset_bottom = -47.0
 scale = Vector2(1.25, 1.25)
 
 [node name="Mini_boss" parent="." groups=["mini_boss"] instance=ExtResource("14_0jx5h")]
-visible = false
 position = Vector2(1585, -1397)
 scale = Vector2(3.405, 3.405)
 
@@ -297,7 +298,19 @@ shape = SubResource("RectangleShape2D_j4inf")
 position = Vector2(3706, -797)
 shape = SubResource("RectangleShape2D_j4inf")
 
-[connection signal="mini_boss_defeated" from="." to="Mini_boss" method="_on_main_mini_boss_defeated"]
+[node name="Final_Boss" parent="." instance=ExtResource("20_puekb")]
+position = Vector2(4203, -1763)
+
+[node name="Camera_Marker" type="Marker2D" parent="Final_Boss"]
+position = Vector2(86, 80)
+
+[node name="Final_boss_fight" parent="." instance=ExtResource("21_xi84t")]
+visible = false
+z_index = 2
+position = Vector2(3916, -1719)
+scale = Vector2(0.61, 0.54)
+
+[connection signal="final_boss_started" from="." to="Final_boss_fight" method="_on_main_final_boss_started"]
 [connection signal="secondkey_obtained" from="Puzzle" to="." method="_on_puzzle_secondkey_obtained"]
 [connection signal="button_pressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
 [connection signal="button_unpressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
@@ -348,3 +361,4 @@ shape = SubResource("RectangleShape2D_j4inf")
 [connection signal="body_exited" from="Interactables/Vending" to="Interactables" method="_on_vending_body_exited"]
 [connection signal="body_entered" from="Interactables/lounge_lockers" to="Interactables" method="_on_lounge_lockers_body_entered"]
 [connection signal="body_exited" from="Interactables/lounge_lockers" to="Interactables" method="_on_lounge_lockers_body_exited"]
+[connection signal="final_battle_started" from="Final_Boss" to="." method="_on_final_boss_final_battle_started"]
