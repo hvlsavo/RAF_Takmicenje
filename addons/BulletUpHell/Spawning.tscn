@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://gixop20d1d75"]
+[gd_scene load_steps=19 format=3 uid="uid://gixop20d1d75"]
 
 [ext_resource type="Script" uid="uid://eiot52b1p11g" path="res://addons/BulletUpHell/BuHSpawner.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://sc2nmsbd56c3" path="res://addons/BulletUpHell/Bullet/Sprites/Bullet_3.png" id="2_3slxn"]
 [ext_resource type="Script" uid="uid://bcdq7ww0bbodm" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="2_4dc5c"]
 [ext_resource type="Texture2D" uid="uid://tkdabo8esltv" path="res://addons/BulletUpHell/Bullet/Sprites/Bullet_06.png" id="3_6fafs"]
 [ext_resource type="Texture2D" uid="uid://c65jpujwa2krq" path="res://addons/BulletUpHell/Bullet/Sprites/Bullet_11.png" id="4_gntuv"]
-[ext_resource type="Texture2D" uid="uid://bjjdg0hkpq5f7" path="res://icon.svg" id="4_paewv"]
+[ext_resource type="Texture2D" uid="uid://dd22te8cwneup" path="res://Assets/textures/ne_bullet.png" id="4_vcv82"]
 [ext_resource type="AudioStream" uid="uid://b5jsoijo76uin" path="res://addons/BulletUpHell/Bullet/Hit Hurt.wav" id="5_rada6"]
+[ext_resource type="Texture2D" uid="uid://dkbn2jvamyfyb" path="res://Assets/textures/cuti_bullet.png" id="7_vcv82"]
+[ext_resource type="Texture2D" uid="uid://o3elnxfgpoqm" path="res://Assets/textures/tiho_bullet.png" id="8_78yhu"]
 
 [sub_resource type="Resource" id="Resource_uhb1j"]
 script = ExtResource("2_4dc5c")
@@ -62,7 +64,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3slxn")
+"texture": ExtResource("7_vcv82")
 }],
 "loop": true,
 "name": &"0",
@@ -70,7 +72,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_paewv")
+"texture": ExtResource("4_vcv82")
 }],
 "loop": true,
 "name": &"1",
@@ -89,12 +91,31 @@ animations = [{
 "loop": true,
 "name": &"Example",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vcv82")
+}],
+"loop": true,
+"name": &"cuti",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_78yhu")
+}],
+"loop": true,
+"name": &"tiho",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="2"]
 
 [sub_resource type="ConvexPolygonShape2D" id="3"]
 points = PackedVector2Array(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78yhu"]
+size = Vector2(16, 9)
 
 [node name="BulletHellManager" type="Node2D"]
 z_index = 999
@@ -115,10 +136,17 @@ sprite_frames = SubResource("1")
 animation = &"1"
 
 [node name="0" type="CollisionShape2D" parent="ShapeManager"]
+visible = false
 shape = SubResource("2")
 
 [node name="LaserBeam" type="CollisionShape2D" parent="ShapeManager"]
+visible = false
 shape = SubResource("3")
+
+[node name="circle_coll" type="CollisionShape2D" parent="ShapeManager"]
+visible = false
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_78yhu")
 
 [node name="SFX" type="Node2D" parent="."]
 

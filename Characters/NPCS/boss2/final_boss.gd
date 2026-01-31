@@ -3,7 +3,6 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 @onready var area_2d = $Area2D
 
-
 signal final_battle_started
 
 func _ready() -> void:

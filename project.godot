@@ -13,12 +13,14 @@ config_version=5
 config/name="New Game Project"
 run/main_scene="uid://8q2va33ba846"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
+Manager="*res://manager.gd"
 
 [dialogic]
 
@@ -26,6 +28,7 @@ directories/dch_directory={
 "final_boss_char": "res://dialogue/timelines/final_boss_char.dch"
 }
 directories/dtl_directory={
+"Final_boss_ending": "res://dialogue/timelines/Final_boss_ending.dtl",
 "checking_door": "res://dialogue/timelines/checking_door.dtl",
 "entrance_door": "res://dialogue/timelines/entrance_door.dtl",
 "final_boss": "res://dialogue/timelines/final_boss.dtl",
@@ -33,6 +36,7 @@ directories/dtl_directory={
 "lockers": "res://dialogue/timelines/lockers.dtl",
 "lounge_lockers": "res://dialogue/timelines/lounge_lockers.dtl",
 "second_key": "res://dialogue/timelines/second_key.dtl",
+"unlocking_door": "res://dialogue/timelines/unlocking_door.dtl",
 "vending": "res://dialogue/timelines/vending.dtl"
 }
 layout/style_directory={
@@ -71,3 +75,4 @@ dialogic_default_action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

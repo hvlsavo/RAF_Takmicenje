@@ -12,7 +12,15 @@ signal first_key_obtained
 signal interaction_started
 signal interaction_over
 
-
+func _ready() -> void:
+	if Manager.first_key_obtained:
+		used = true
+		area2d.monitoring = false
+		sprite.hide()
+		set_physics_process(false)
+	else:
+		area2d.monitoring = true
+		set_physics_process(true)
 func _physics_process(delta: float) -> void:
 	if in_area and not used and Input.is_action_just_pressed("ui_accept"):
 		interact()
@@ -23,7 +31,8 @@ func interact() -> void:
 
 	used = true
 	in_area = false
-
+	Manager.first_key_obtained = true
+	Manager.keys += 1
 	area2d.monitoring = false
 	sprite.hide()
 

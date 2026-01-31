@@ -9,8 +9,9 @@ signal secondkey_obtained
 var secondkey_dialogue : DialogicTimeline = preload("res://dialogue/timelines/second_key.dtl")
 
 func _physics_process(delta: float) -> void:
-    if puzzle_blocks.size() == target_puzzle_blocks and not puzzle_solved:
+    if puzzle_blocks.size() == target_puzzle_blocks and not puzzle_solved and Manager.second_key_obtained == false:
         puzzle_solved = true
+        Manager.second_key_obtained = true
         secondkey_obtained.emit()
         Dialogic.start(secondkey_dialogue)
 
