@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://buhf4hd0y5d1j"]
+[gd_scene load_steps=5 format=3 uid="uid://buhf4hd0y5d1j"]
 
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="1_f6fvy"]
 [ext_resource type="Script" uid="uid://dj3u8jl0nd5lv" path="res://Level/puzzle/puzzle_button.gd" id="1_locg7"]
+[ext_resource type="AudioStream" uid="uid://rohxghba7orn" path="res://Assets/Sound/click.wav" id="3_6e7gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_locg7"]
 size = Vector2(6, 5)
@@ -24,4 +25,8 @@ tile_set = ExtResource("1_f6fvy")
 position = Vector2(4, -4.5)
 shape = SubResource("RectangleShape2D_locg7")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6e7gm")
+volume_db = -10.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

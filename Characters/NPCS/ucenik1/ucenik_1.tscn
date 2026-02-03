@@ -148,7 +148,7 @@ libraries = {
 [node name="Transition" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -49)
 stream = ExtResource("5_u1ohb")
-volume_db = -19.809
+volume_db = -23.0
 
 [node name="AlertedAnim" type="Sprite2D" parent="."]
 z_index = 10
@@ -158,7 +158,7 @@ texture = ExtResource("6_j8euh")
 
 [node name="Alert" type="AudioStreamPlayer2D" parent="AlertedAnim"]
 stream = ExtResource("7_8p72n")
-volume_db = -10.895
+volume_db = -17.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -46.0

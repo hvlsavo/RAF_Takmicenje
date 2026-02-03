@@ -5,6 +5,7 @@ extends Control
 @onready var respond_button = $Buttons/RespondButton
 @onready var silent_button = $Buttons/SilentButton
 @onready var stare_button = $StareButton
+@onready var click = $click
 var monster_hp := 10
 var player_hp := 10
 var battle_over := false
@@ -57,9 +58,7 @@ func start(ucenik: Node):
 		fearbar_label.visible = true
 		stare_button.visible = true
 		fearbar.value = 75
-		print("mini")
 		label.text = "Sva svetla trepere,ne gleda te jedno čudovište,već više njih."
-
 
 func _reset_battle():
 	monster_hp = 10
@@ -137,10 +136,10 @@ func _delayed_player_lost() -> void:
 
 # dugmad
 func _on_act_button_pressed():
+	click.play()
 	if battle_over: return
 	silent_count = 0
 	if is_mini_boss:
-		print(silent_count)
 		label.text = "Pokušavaš da kažeš nešto normalno.Rečenica ti zapne na pola.Oni kažu: \"Zašto se uopšte trudiš?\""
 		fearbar.value += 10
 		if check_battle_end(): return
@@ -161,16 +160,17 @@ func _on_act_button_pressed():
 			dialogue_state = "idle"
 
 func _on_respond_button_pressed():
+	click.play()
 	if battle_over: return
 	silent_count = 0
 	if is_mini_boss:
-		print(silent_count)
 		if not first_act_done:
 			label.text = "Odgovorio si iskreno.Nekoliko ociju su se zatvorile."
 			fearbar.value -= 15
 			first_act_done = true
 		else:
 			label.text = "Odgovaraš tek kad su te već procenili.Kažu ti: \"Kasno\""
+		if check_battle_end(): return
 	else:
 		if dialogue_state == "monster_waiting":
 			monster_hp -= 1
@@ -184,17 +184,18 @@ func _on_respond_button_pressed():
 			dialogue_state = "idle"
 
 func _on_silent_button_pressed():
+	click.play()
 	if is_mini_boss:
 		silent_count += 1
-		print(silent_count)
 		if silent_count == 1:
-			label.text = "Odlučio si da ćutiš. Glasovi šapuću: \"Zašto ne govoriš?\""
+			label.text = "Odlučio si da ćutiš. Razmišljaš se da li da opet ćutiš. Glasovi šapuću: \"Zašto ne govoriš?\""
 			fearbar.value += 20
 		elif silent_count == 5:
 			label.text = "Previše tišine… probaj kasnije."
 		elif silent_count >= 2 and silent_count <= 4:
 			label.text = "I dalje ćutiš. Neko izgleda zbunjeno..."
 			fearbar.value -= 10
+		if check_battle_end(): return
 	else:
 		if battle_over: return
 		label.text = "Odlučio si da ćutiš."
@@ -205,6 +206,7 @@ func _on_silent_button_pressed():
 
 
 func _on_stare_button_pressed() -> void:
+	click.play()
 	silent_count = 0
 	if is_mini_boss:
 		label.text = "Gledaš u njih, ne trepćući.Ne znaš šta će se desiti."

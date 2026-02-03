@@ -64,6 +64,7 @@ func _check_entrance_door() -> void:
     interaction_started.emit()
     await Dialogic.timeline_ended
     interaction_over.emit()
+    dialogue_locked = false
 
 func _on_vending_body_entered(body:Node2D) -> void:
     if body.is_in_group("player"):

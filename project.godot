@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
-run/main_scene="uid://8q2va33ba846"
+config/name="Korak Napred"
+run/main_scene="uid://bffx6da1getbq"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
 
 [autoload]
 
@@ -36,6 +36,7 @@ directories/dtl_directory={
 "lockers": "res://dialogue/timelines/lockers.dtl",
 "lounge_lockers": "res://dialogue/timelines/lounge_lockers.dtl",
 "second_key": "res://dialogue/timelines/second_key.dtl",
+"starting": "res://dialogue/timelines/starting.dtl",
 "unlocking_door": "res://dialogue/timelines/unlocking_door.dtl",
 "vending": "res://dialogue/timelines/vending.dtl"
 }
@@ -47,6 +48,10 @@ layout/style_directory={
 glossary/default_case_sensitive=true
 layout/style_list=["res://dialogue/style/New_File.tres", "res://dialogue/style/fbstyl.tres"]
 layout/default_style="res://dialogue/style/New_File.tres"
+
+[display]
+
+window/size/resizable=false
 
 [editor_plugins]
 
@@ -75,4 +80,8 @@ dialogic_default_action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+gl_compatibility/nvidia_disable_threaded_optimization=false
+anti_aliasing/quality/msaa_2d=3
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+anti_aliasing/quality/screen_space_aa=1
+anti_aliasing/quality/use_taa=true

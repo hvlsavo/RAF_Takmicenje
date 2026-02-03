@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bffx6da1getbq"]
+
+[ext_resource type="Texture2D" uid="uid://0bgpiw6oeepu" path="res://Assets/textures/game_fail.png" id="1_4wri8"]
+[ext_resource type="Script" uid="uid://ba03oby0ocivx" path="res://menus/mainmenu.gd" id="1_g52s1"]
+[ext_resource type="FontFile" uid="uid://dbl3favhv00sj" path="res://Battle/ui_elements/handwritefont.ttf" id="2_g52s1"]
+[ext_resource type="FontFile" uid="uid://bh2ms3g1r6bwc" path="res://Battle/ui_elements/handwrite_dialg.ttf" id="4_4wri8"]
+[ext_resource type="Texture2D" uid="uid://xkscgkbo3x4s" path="res://Assets/textures/button_hover.png" id="5_g52s1"]
+[ext_resource type="Texture2D" uid="uid://csdaiff5itfkm" path="res://Assets/textures/button1.png" id="6_g52s1"]
+[ext_resource type="AudioStream" uid="uid://dbrq5cv2ssgcb" path="res://Assets/Sound/maintheme.mp3" id="7_nwskn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1pjrb"]
+texture = ExtResource("5_g52s1")
+texture_margin_left = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nwskn"]
+texture = ExtResource("6_g52s1")
+texture_margin_left = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gycx"]
+texture = ExtResource("5_g52s1")
+texture_margin_left = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vgium"]
+texture = ExtResource("6_g52s1")
+texture_margin_left = 1.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g52s1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_4wri8")
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 178.0
+offset_right = 432.0
+offset_bottom = 290.0
+theme_override_fonts/font = ExtResource("2_g52s1")
+theme_override_font_sizes/font_size = 112
+text = "Korak napred"
+
+[node name="Button" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = -34.0
+offset_right = -403.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_4wri8")
+theme_override_font_sizes/font_size = 43
+theme_override_styles/hover = SubResource("StyleBoxTexture_1pjrb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nwskn")
+text = "START"
+
+[node name="Button2" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -550.0
+offset_top = 26.0
+offset_right = -403.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_4wri8")
+theme_override_font_sizes/font_size = 43
+theme_override_styles/hover = SubResource("StyleBoxTexture_7gycx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vgium")
+text = "EXIT"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-423, -634)
+stream = ExtResource("7_nwskn")
+volume_db = -23.0
+pitch_scale = 0.85
+autoplay = true
+
+[connection signal="pressed" from="Container/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Container/Button2" to="." method="_on_button_2_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr2twmc0uvpup"]
+[gd_scene load_steps=11 format=3 uid="uid://cr2twmc0uvpup"]
 
 [ext_resource type="Script" uid="uid://dalyvytnekvls" path="res://Characters/Player/player.gd" id="1_j341n"]
 [ext_resource type="Texture2D" uid="uid://5n2s7qjifu1o" path="res://Assets/Spritesheets/sprite1-export.png" id="2_j341n"]
@@ -126,6 +126,9 @@ _data = {
 &"walk_up": SubResource("Animation_bqsbk")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cue0d"]
+size = Vector2(25, 29)
+
 [node name="Player" type="CharacterBody2D"]
 z_as_relative = false
 script = ExtResource("1_j341n")
@@ -149,3 +152,10 @@ position = Vector2(0, -47)
 libraries = {
 &"": SubResource("AnimationLibrary_klx3t")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="puzzle_coll" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.5, -4.5)
+shape = SubResource("RectangleShape2D_cue0d")

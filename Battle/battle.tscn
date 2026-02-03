@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4r5jfa2it0lp"]
+[gd_scene load_steps=11 format=3 uid="uid://b4r5jfa2it0lp"]
 
 [ext_resource type="Script" uid="uid://cg53txaeyc06i" path="res://Battle/battle.gd" id="1_ac2hh"]
 [ext_resource type="FontFile" uid="uid://dbl3favhv00sj" path="res://Battle/ui_elements/handwritefont.ttf" id="2_o5tja"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://buop7yyvbg7hg" path="res://Battle/ui_elements/dialogue_box.tres" id="5_do635"]
 [ext_resource type="StyleBox" uid="uid://b5fkkeeaxgyxp" path="res://Battle/ui_elements/fearbarfill.tres" id="6_ihngk"]
 [ext_resource type="FontFile" uid="uid://bh2ms3g1r6bwc" path="res://Battle/ui_elements/handwrite_dialg.ttf" id="6_ploow"]
+[ext_resource type="AudioStream" uid="uid://brbua211ytiod" path="res://Assets/Sound/button.wav" id="9_ihngk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ploow"]
 
@@ -138,6 +139,9 @@ Ne gleda te jedno čudovište.
 Gleda te previše njih.
 "
 autowrap_mode = 3
+
+[node name="click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ihngk")
 
 [connection signal="pressed" from="StareButton" to="." method="_on_stare_button_pressed"]
 [connection signal="pressed" from="Buttons/ActButton" to="." method="_on_act_button_pressed"]

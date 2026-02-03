@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://8q2va33ba846"]
+[gd_scene load_steps=32 format=4 uid="uid://8q2va33ba846"]
 
 [ext_resource type="PackedScene" uid="uid://didft68u16tdc" path="res://Level/School/school.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://dkjv0vfvg8q34" path="res://Main/main.gd" id="1_k3v36"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cf8w2bocp0anf" path="res://menus/game_over.tscn" id="14_uhr2j"]
 [ext_resource type="PackedScene" uid="uid://bsvs8se2pp632" path="res://Level/1stkey.tscn" id="16_guo5i"]
 [ext_resource type="Script" uid="uid://duwysq7gibnpa" path="res://Main/interactables.gd" id="16_l5bfp"]
+[ext_resource type="AudioStream" uid="uid://dbrq5cv2ssgcb" path="res://Assets/Sound/maintheme.mp3" id="18_xi84t"]
+[ext_resource type="AudioStream" uid="uid://ckidx0maldgq8" path="res://Assets/Sound/miniboss.mp3" id="20_j4inf"]
 [ext_resource type="PackedScene" uid="uid://b8x6kwsjvv7m1" path="res://Characters/NPCS/boss2/final_boss.tscn" id="20_puekb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr2j"]
@@ -145,7 +147,7 @@ tile_map_data = PackedByteArray("AAA6AND/AAAJAAUAAAA9AM3/AAAJAAUAAAA+AM3/AAAJAAU
 tile_set = ExtResource("13_rix8b")
 
 [node name="Ucenik1" parent="." groups=["ucenici"] instance=ExtResource("3_qvhan")]
-position = Vector2(606, 85)
+position = Vector2(606, 176)
 scale = Vector2(2.01, 2.01)
 phase_1 = ExtResource("4_liyct")
 phase_2 = ExtResource("5_ib3t1")
@@ -204,7 +206,7 @@ scale = Vector2(2.14, 2.14)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(1521, -223)
+position = Vector2(-56, 222)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
@@ -220,9 +222,19 @@ offset_top = -47.0
 offset_bottom = -47.0
 scale = Vector2(1.25, 1.25)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-423, -634)
+stream = ExtResource("18_xi84t")
+volume_db = -23.0
+autoplay = true
+
 [node name="Mini_boss" parent="." groups=["mini_boss"] instance=ExtResource("14_0jx5h")]
 position = Vector2(1585, -1397)
 scale = Vector2(3.405, 3.405)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Mini_boss"]
+stream = ExtResource("20_j4inf")
+volume_db = -23.0
 
 [node name="Interactables" type="Node" parent="."]
 script = ExtResource("16_l5bfp")

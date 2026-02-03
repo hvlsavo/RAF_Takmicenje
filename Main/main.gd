@@ -5,7 +5,11 @@ extends Node2D
 @onready var player_camera = $Player/Camera2D
 @onready var battle_scene = $Player/Battle
 @onready var game_over = $Player/game_over
-
+@onready var ucenik1 = $Ucenik1
+@onready var ucenik2 = $Ucenik2
+@onready var ucenik3 = $Ucenik3
+@onready var main_music = $Player/AudioStreamPlayer2D
+@onready var mini_boss_music = $Mini_boss/AudioStreamPlayer2D
 # Vrata 1
 @onready var door = $Door
 @onready var door_tile = $Door/DoorTile
@@ -38,6 +42,10 @@ func _ready() -> void:
 	tween.tween_property(self, "modulate", Color(1,1,1,1), 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
 	if Manager.is_final_boss_defeated:
+		Manager.keys +=1
+		ucenik1.queue_free()
+		ucenik2.queue_free()
+		ucenik3.queue_free()
 		final_boss.queue_free()
 		player.speed = 0
 		Dialogic.start(final_boss_end_dialogue)
@@ -62,26 +70,36 @@ func _on_ucenik_start_battle(ucenik) -> void:
 
 func _on_battle_player_won() -> void:
 	if battle_scene.is_mini_boss and not is_mini_boss_defeated:
+		mini_boss_music.stop()
+		main_music.play()
 		Manager.is_mini_boss_defeated = true
 		is_mini_boss_defeated = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(player_camera, "zoom", Vector2(1,1), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(battle_scene, "scale", Vector2.ONE, 0.7)
+	Manager.social_credit +=1
 	social_credit += 1
 	_unlock_player()
 
 func _on_battle_player_lost() -> void:
 	if battle_scene.is_mini_boss:
+		mini_boss_music.stop()
+		main_music.stop()
 		game_over.show()
 	if social_credit > 0:
+		Manager.social_credit -= 1
 		social_credit -= 1
 	_unlock_player()
 
 func _on_game_over_try_again() -> void:
 	game_over.hide()
 	battle_scene.start(battle_scene.current_ucenik)
+	if battle_scene.is_mini_boss:
+		mini_boss_music.play()
 
 func _on_mini_boss_start_miniboss_battle(boss) -> void:
+	main_music.stop()
+	mini_boss_music.play()
 	var tween = get_tree().create_tween()
 	tween.set_parallel()
 	tween.tween_property(player_camera, "zoom", Vector2(0.8,0.8), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
@@ -112,8 +130,18 @@ func _check_locked_door() -> void:
 		dialogue_locked = true
 		_lock_player()
 		await Dialogic.timeline_ended
-		_unlock_player()
-		dialogue_locked = false
+		if Manager.social_credit > 0:
+			Manager.good_ending = true
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "modulate:a", 0, 1.5)
+			await tween.finished
+			get_tree().change_scene_to_file("res://Main/ending.tscn")
+		else:
+			Manager.good_ending = false
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, "modulate:a", 0, 1.5)
+			await tween.finished
+			get_tree().change_scene_to_file("res://Main/ending.tscn")
 	else:
 		dialogue_locked = true
 		_lock_player()
@@ -146,10 +174,12 @@ func _unlock_player() -> void:
 func _on_puzzle_secondkey_obtained() -> void:
 	_lock_player()
 	await Dialogic.timeline_ended
+	Manager.keys += 1
 	_unlock_player()
 
 
 func _on_final_boss_final_battle_started() -> void:
+	main_music.stop()
 	var tween = get_tree().create_tween()
 	tween.tween_property(player.get_node("Camera2D"), "global_position", cam_marker.global_position, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_lock_player()

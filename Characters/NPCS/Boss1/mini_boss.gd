@@ -24,7 +24,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
         area2d.set_deferred("monitoring", false)
 
 
-#PLACEHOLDER NAPRAVITI GAME OVER
+
 func _on_battle_player_lost():
     print("PLAYER LOST TO MINI BOSS")
 

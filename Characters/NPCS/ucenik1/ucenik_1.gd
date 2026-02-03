@@ -31,48 +31,9 @@ func _ready():
 	add_to_group("ucenici")
 
 	alert_sprite.modulate.a = 0.0
-	
-	# Load saved state if it exists
-	var state_key = name
-	if Manager.ucenik_states.has(state_key):
-		var state = Manager.ucenik_states[state_key]
-		current_phase = state.get("phase", 1)
-		is_defeated = state.get("defeated", false)
-		_restore_phase(current_phase, is_defeated)
-	
-	# If defeated, disable interactions
-	if is_defeated:
-		area2d.set_deferred("monitoring", false)
-		shadow.hide()
 
 func _physics_process(delta: float) -> void:
 	phase1_anim.play("idle")
-
-
-func _restore_phase(phase: int, defeated: bool) -> void:
-	"""Restore ucenik to saved phase"""
-	if defeated:
-		sprite_phase1.hide()
-		sprite_phase2.hide()
-		sprite_phase3.hide()
-		shadow.hide()
-		phase_3_collider.disabled = true
-		area2d.set_deferred("monitoring", false)
-	elif phase == 1:
-		sprite_phase1.show()
-		sprite_phase2.hide()
-		sprite_phase3.hide()
-		phase1_anim.play("idle")
-	elif phase == 2:
-		sprite_phase1.hide()
-		sprite_phase2.show()
-		sprite_phase3.hide()
-		phase2_anim.play("idle")
-	elif phase == 3:
-		sprite_phase1.hide()
-		sprite_phase2.hide()
-		sprite_phase3.show()
-		phase_3_collider.disabled = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

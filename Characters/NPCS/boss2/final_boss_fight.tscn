@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bghfio8fj7lup"]
+[gd_scene load_steps=46 format=3 uid="uid://bghfio8fj7lup"]
 
 [ext_resource type="Script" uid="uid://dpedes158so43" path="res://Characters/NPCS/boss2/final_boss_fight.gd" id="1_irug3"]
 [ext_resource type="Texture2D" uid="uid://cjysdr5y3orec" path="res://Assets/textures/fb_fight_button.png" id="2_2okqu"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://y0cwgtkohoc6" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="12_xkqkk"]
 [ext_resource type="Script" uid="uid://bcdq7ww0bbodm" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="13_33vh6"]
 [ext_resource type="Script" uid="uid://ru4xgv0p0fkf" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="14_hkn0x"]
+[ext_resource type="AudioStream" uid="uid://jyvvl07r8mes" path="res://Assets/Sound/final_boss.mp3" id="17_xkqkk"]
+[ext_resource type="AudioStream" uid="uid://bv8q3na3fwlpe" path="res://Assets/Sound/hit.wav" id="18_33vh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wnwb"]
 size = Vector2(232, 79)
@@ -412,7 +414,7 @@ wait_tween_length = 0.0
 wait_tween_time = 0.0
 metadata/_custom_type_script = "uid://cyq7ta3ornut8"
 
-[node name="fb_fight_deprecated" type="Node2D" node_paths=PackedStringArray("button_markers", "bullet_patterns")]
+[node name="fb_fight" type="Node2D" node_paths=PackedStringArray("button_markers", "bullet_patterns")]
 position = Vector2(0, 1)
 script = ExtResource("1_irug3")
 button_markers = [NodePath("Area_markers/m1"), NodePath("Area_markers/m2"), NodePath("Area_markers/m3"), NodePath("Area_markers/m4"), NodePath("Area_markers/m5")]
@@ -642,6 +644,14 @@ script = ExtResource("10_ffi45")
 id = "line45"
 pattern = SubResource("NavigationPolygon_2vbes")
 metadata/_custom_type_script = "uid://b24tmdg6k5yjc"
+
+[node name="hitsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_33vh6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_xkqkk")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -10,7 +10,7 @@ extends Node2D
 @onready var button_collision = $Area2D/CollisionShape2D
 @onready var fearbar = $Fearbar
 @onready var game_over = $CanvasLayer/game_over
-
+@onready var hit_sound = $hitsound
 var fb_button_touched := false
 var can_spawn := true
 var pattern_index := 0
@@ -91,7 +91,7 @@ func _on_bullet_hit(
 ) -> void:
 	if body != fb_player or not can_take_damage:
 		return
-
+	hit_sound.play()
 	can_take_damage = false
 	fearbar.value += 10
 
