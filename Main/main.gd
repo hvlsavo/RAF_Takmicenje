@@ -34,7 +34,7 @@ var is_mini_boss_defeated: bool = false
 @onready var final_boss = $Final_Boss
 @onready var cam_marker = $Final_Boss/Camera_Marker
 var final_boss_dialogue: DialogicTimeline = preload("res://dialogue/timelines/final_boss.dtl")
-var final_boss_end_dialogue: DialogicTimeline = preload("res://dialogue/timelines/final_boss_ending.dtl")
+var final_boss_end_dialogue: DialogicTimeline = preload("res://dialogue/timelines/Final_boss_ending.dtl")
 
 func _ready() -> void:
 	self.modulate = Color.BLACK
