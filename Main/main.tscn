@@ -70,11 +70,6 @@ position = Vector2(2712, -2379)
 scale = Vector2(6.025, 6.025)
 heart_id = 1
 
-[node name="Puzzle_button3" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
-position = Vector2(2793, -2379)
-scale = Vector2(6.025, 6.025)
-heart_id = 1
-
 [node name="Puzzle_button4" parent="Puzzle" groups=["hearts"] instance=ExtResource("4_puekb")]
 position = Vector2(2873, -2379)
 scale = Vector2(6.025, 6.025)
@@ -206,7 +201,7 @@ scale = Vector2(2.14, 2.14)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(-56, 222)
+position = Vector2(2944, -1945)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
@@ -315,8 +310,6 @@ position = Vector2(4203, -1763)
 position = Vector2(86, 80)
 
 [connection signal="secondkey_obtained" from="Puzzle" to="." method="_on_puzzle_secondkey_obtained"]
-[connection signal="button_pressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
-[connection signal="button_unpressed" from="Puzzle/Puzzle_button3" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
 [connection signal="button_pressed" from="Puzzle/Puzzle_button4" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]
 [connection signal="button_unpressed" from="Puzzle/Puzzle_button4" to="Puzzle" method="_on_puzzle_button_2_button_unpressed"]
 [connection signal="button_pressed" from="Puzzle/Puzzle_button5" to="Puzzle" method="_on_puzzle_button_2_button_pressed"]

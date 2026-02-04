@@ -77,6 +77,8 @@ func _on_battle_player_won() -> void:
 		var tween = get_tree().create_tween()
 		tween.tween_property(player_camera, "zoom", Vector2(1,1), 0.7).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(battle_scene, "scale", Vector2.ONE, 0.7)
+		Manager.social_credit -= 1
+		social_credit -= 1
 	Manager.social_credit +=1
 	social_credit += 1
 	_unlock_player()
