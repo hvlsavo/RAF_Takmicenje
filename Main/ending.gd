@@ -2,11 +2,12 @@ extends Node2D
 
 @onready var bad_ending_shadows = $Bad_ending
 @onready var npcs = $Sprites
+@onready var music = $music
 func _ready() -> void:
     if Manager.good_ending == false:
+        music.pitch_scale = 0.65
         bad_ending_shadows.show()
         npcs.hide()
-
     self.modulate.a = 0
     var tween = get_tree().create_tween()
     tween.tween_property(self, "modulate:a", 1, 3)

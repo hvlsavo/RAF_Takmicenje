@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cbsmjjxqw4as3"]
+[gd_scene load_steps=11 format=4 uid="uid://cbsmjjxqw4as3"]
 
 [ext_resource type="Script" uid="uid://dawg1peyab2tf" path="res://Main/ending.gd" id="1_awvr5"]
 [ext_resource type="TileSet" uid="uid://bieo32m8677us" path="res://Level/School/school.tres" id="1_ge0ay"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6xayywvrisw" path="res://Assets/Spritesheets/npc_2_sitting.png" id="4_tokrj"]
 [ext_resource type="Texture2D" uid="uid://d1eynp43gwddv" path="res://Assets/Spritesheets/npc_3_sitting.png" id="5_v2y8d"]
 [ext_resource type="Texture2D" uid="uid://kn4lmhovtipj" path="res://Assets/Spritesheets/npc_4_sitting.png" id="6_4c2q6"]
+[ext_resource type="AudioStream" uid="uid://dbrq5cv2ssgcb" path="res://Assets/Sound/maintheme.mp3" id="8_tokrj"]
 
 [sub_resource type="Gradient" id="Gradient_1woio"]
 offsets = PackedFloat32Array(0, 0.103896)
@@ -102,3 +103,8 @@ text = "Nisi sam."
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(7, -26)
 zoom = Vector2(3.945, 3.945)
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tokrj")
+volume_db = -13.0
+autoplay = true

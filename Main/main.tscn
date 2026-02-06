@@ -201,7 +201,7 @@ scale = Vector2(2.14, 2.14)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_qvhan")]
 z_index = 1
-position = Vector2(2944, -1945)
+position = Vector2(-75, 208)
 
 [node name="Battle" parent="Player" instance=ExtResource("4_eunhr")]
 visible = false
